@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd">  
+    <!-- 设置磁盘持久化的位置 -->  
+    <diskStore path="E:/temp" />   
+    <defaultCache maxElementsInMemory="10000" eternal="true"  
+        overflowToDisk="true" />  
+        
+    <cache name="BrandKeywordMonitorCache"   
+           maxElementsInMemory="0"   
+           maxElementsOnDisk="90000"    
+           eternal="false"    
+           overflowToDisk="true"    
+           diskSpoolBufferSizeMB="2048"   
+           timeToIdleSeconds="7200"   
+           timeToLiveSeconds="7200"   
+           memoryStoreEvictionPolicy="LFU"  
+           diskPersistent="true"   
+           logging="false"   />  
+           
+           
+     <cache name="HttpStatusCache"   
+           maxElementsInMemory="0"   
+           maxElementsOnDisk="90000"    
+           eternal="false"  
+           overflowToDisk="true"   
+           diskSpoolBufferSizeMB="2048"  
+           diskExpiryThreadIntervalSeconds="120"  
+           diskPersistent="true"    
+           timeToIdleSeconds="7200"   
+           timeToLiveSeconds="7200"   
+           memoryStoreEvictionPolicy="LFU"   
+           logging="false"  />  
+           
+    <cache name="CrabmanCacheALL"  
+           maxElementsInMemory="90000"  
+           maxElementsOnDisk="90000"   
+           eternal="false"   
+           overflowToDisk="true"   
+           diskSpoolBufferSizeMB="2048"  
+           timeToIdleSeconds="7200"   
+           timeToLiveSeconds="7200"   
+           memoryStoreEvictionPolicy="LFU"  
+           diskPersistent="true"    />          
+</ehcache>   

@@ -1,0 +1,16 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.url">jdbc:mysql://192.168.1.102:3306/test</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">123123</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<mapping resource="com/of/springmvc/model/User.hbm.xml"/>
+		<mapping resource="com/of/springmvc/model/Dept.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

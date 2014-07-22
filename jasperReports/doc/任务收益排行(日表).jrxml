@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="任务收益排行(日表)" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="807b69e3-0af2-481b-8a56-4ac264c328b2">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select task.id  taskID,task.qbTaskId ,task.taskName ,task.days ,task.rate ,task.rate*10000/100/365 ,task.margins/100 ,task.totalReward/100  , task.currentApplyNum ,task.oneDayNum ,task.showTime
+,task.state ,task.taskCount ,task.updateTime,task.taskStyle
+from task task
+where  task.state in (1,2)
+order by task.rate desc]]>
+	</queryString>
+	<field name="taskID" class="java.lang.Integer"/>
+	<field name="qbTaskId" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="taskName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="days" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rate" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="task.rate*10000/100/365" class="java.lang.Double"/>
+	<field name="task.margins/100" class="java.math.BigDecimal"/>
+	<field name="task.totalReward/100" class="java.math.BigDecimal"/>
+	<field name="currentApplyNum" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="oneDayNum" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="showTime" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="state" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="taskCount" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="updateTime" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="taskStyle" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="262" y="0" width="225" height="34" uuid="74b29651-e25c-4945-8c46-09754cf2e51a"/>
+				<textElement>
+					<font fontName="宋体" size="24" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务收益排行(日表)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="53" height="20" uuid="d1ab84f2-7188-4fde-8bba-247bfddc20ef"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="53" y="0" width="53" height="20" uuid="db1aca9c-0bbc-4b01-be67-cb9c87f16f3f"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[钱宝任务ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="106" y="0" width="103" height="20" uuid="96ab7707-37f4-4783-be78-d290cbc28b9c"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="0" width="53" height="20" uuid="2ce5c8cc-36fb-4bdd-947c-c910d86163be"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务周期/天]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="0" width="53" height="20" uuid="aef4e670-209e-417e-8111-1aec619b8122"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[日年化利率]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="0" width="53" height="20" uuid="bdc33093-6be5-480c-9cf5-a16d66662954"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[万元日收益]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="368" y="0" width="53" height="20" uuid="b7a13187-eb2f-4c68-acaa-338c9aa28be6"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[押金元]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="0" width="53" height="20" uuid="b8920886-6900-4d10-9e49-41b72842b6bd"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务奖金元]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="474" y="0" width="53" height="20" uuid="7d69eb9a-ee5e-42e3-891a-dd3d287545dd"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[总申请数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="527" y="0" width="53" height="20" uuid="10bce498-d972-4c48-b288-6c58a23cece8"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[日执行次数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="580" y="0" width="53" height="20" uuid="fbf07d68-13e3-484a-9545-33475519d7c7"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务时长秒]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="633" y="0" width="53" height="20" uuid="82cdfca2-931a-4a5a-b11a-971bb057e399"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务状态]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="686" y="0" width="53" height="20" uuid="c6bab3c8-e579-4e4b-8b15-87967ef118ae"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="742" y="0" width="53" height="20" uuid="7bfe1997-a636-4443-b9e2-f738ad536bbf"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[任务类型]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="53" height="20" uuid="61c6ef03-7e3a-46a4-9c18-fcf3a15e5b0f"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{taskID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="0" width="53" height="20" uuid="a2af3f45-b0fd-43dd-a2e5-eba56cddf5e6"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qbTaskId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="106" y="0" width="103" height="20" uuid="535fbd98-2659-412d-b718-219980d04a6a"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{taskName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="0" width="53" height="20" uuid="8d11ee4e-9ed8-4b8e-8832-b28dc321d239"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{days}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="0" width="53" height="20" uuid="6614f6a9-919b-471d-a656-d4f42aee1413"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement x="315" y="0" width="53" height="20" uuid="e189499c-993b-4beb-9e0b-2dee42d39064"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{task.rate*10000/100/365}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="368" y="0" width="53" height="20" uuid="402cdd51-e3a0-4ae8-b2fd-206e242a9817"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{task.margins/100}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;###0.00-">
+				<reportElement x="421" y="0" width="53" height="20" uuid="be2b91c7-e269-4492-b180-d9edd26a2fcf"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{task.totalReward/100}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0;###0-">
+				<reportElement x="474" y="0" width="53" height="20" uuid="e512b58d-a686-4693-94f4-237bd2a434e4"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{currentApplyNum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="527" y="0" width="53" height="20" uuid="4b17389d-f562-4296-9037-886f77bfeecf"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{oneDayNum}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="580" y="0" width="53" height="20" uuid="65e0b110-06f5-4a22-b79b-a11faa5a3b5c"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{showTime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="633" y="0" width="53" height="20" uuid="5260d077-4790-4749-bc33-0a719535f7da"/>
+				<textElement>
+					<font fontName="仿宋" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="686" y="0" width="53" height="20" uuid="427ba5f5-5b29-4410-bb36-69fc793403ba"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{taskCount}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="742" y="0" width="53" height="20" uuid="52c6e97d-5566-4a5c-b7a3-552e9e7a6582"/>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{taskStyle}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

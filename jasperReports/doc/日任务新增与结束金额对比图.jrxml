@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="日任务新增与结束金额对比图" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b24571b5-8458-4733-ae86-ad8e49bc8305">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[
+select * from reporttaskapplymoneyday moneyday
+where  TO_DAYS(moneyday.reportDate)   >  TO_DAYS(NOW())-20
+order by  moneyday.reportDate]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inMoney" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="outMoney" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="reportDate" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="235" y="0" width="325" height="50" uuid="ff9e11de-ea69-4e24-92a3-8b93ae19307b"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[日任务新增与结束金额对比图]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="200" height="20" uuid="6f1ad673-cf82-4330-a389-31784ac1d1b4"/>
+				<text><![CDATA[序号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="200" height="20" uuid="7e8fe901-3b58-429e-8313-589f5106872f"/>
+				<text><![CDATA[当日领取任务总金额/元]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="0" width="200" height="20" uuid="70dc6a28-21bf-40fb-b450-b9a9ae97eba1"/>
+				<text><![CDATA[当日结算任务总金额/元]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="600" y="0" width="200" height="20" uuid="d8a6891f-3800-49dd-90e0-4fecad3c99c2"/>
+				<text><![CDATA[核对时间]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="200" height="20" uuid="f0237fbb-160b-4f90-bfcd-d66b0e3939c1"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="200" y="0" width="200" height="20" uuid="947210e9-082c-4431-afcf-5b4b1111554c"/>
+				<textFieldExpression><![CDATA[$F{inMoney}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement x="400" y="0" width="200" height="20" uuid="83fd66bc-ab2a-4f8f-824a-5dec96e78a9b"/>
+				<textFieldExpression><![CDATA[$F{outMoney}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="600" y="0" width="200" height="20" uuid="4d63fd10-3dbd-4805-9430-1b86e9e3d47d"/>
+				<textFieldExpression><![CDATA[$F{reportDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="402" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="0" y="0" width="800" height="402" uuid="e5ed97fd-e752-4637-8d79-ba5cf46d5490"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["日进帐金额"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{reportDate}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{inMoney}]]></valueExpression>
+						<labelExpression><![CDATA[$F{reportDate}.toString()]]></labelExpression>
+					</categorySeries>
+					<categorySeries>
+						<seriesExpression><![CDATA["日出帐金额"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{reportDate}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{outMoney}]]></valueExpression>
+						<labelExpression><![CDATA[$F{reportDate}.toString()]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot labelRotation="75.0"/>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["时间"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat labelRotation="75.0">
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["元"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

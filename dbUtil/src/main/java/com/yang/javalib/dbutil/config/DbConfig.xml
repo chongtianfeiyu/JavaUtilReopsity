@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataBase name="database">
+	<driver value="oracle.jdbc.driver.OracleDriver" />
+	<url value="jdbc:oracle:thin:@192.168.201.24:1521:orcl" />
+	<uid value="imon_b10" />
+	<pwd value="root123" />
+</DataBase>

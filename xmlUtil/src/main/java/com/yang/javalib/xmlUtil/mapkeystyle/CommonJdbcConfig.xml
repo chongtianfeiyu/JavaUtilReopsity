@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<probe>
+	<config>
+		<item name="indicatorNames" value="aaa, bbb,ccc" />
+		<item name="instanceName" value="instanceName" />
+		<items name="database">
+			<items name="db1">
+				<item name="driver" value="oracle.jdbc.driver.OracleDriver" />
+				<item name="url" value="jdbc:oracle:thin:@168.168.202.36:1521:orcl" />
+				<item name="userName" value="sop" />
+				<item name="passWord" value="cm9vdDEyMw==" />
+			</items>
+		</items>
+		<items name="sql">
+			<items name="n1">
+				<item name="database" value="db1" />
+				<item name="sqlstr" value="select 12 from dual" />
+			</items>
+			<items name="n2">
+				<item name="database" value="db1" />
+				<item name="sqlstr" value="select -14 from dual" />
+			</items>
+		</items>
+		<items name="result">
+			<item name="R1" value="{n1}+{n1}" />
+			<item name="R2" value="Math.abs({n2})" />
+			<item name="R3" value="{n1o}-{n1}" />
+		</items>
+	</config>
+</probe>

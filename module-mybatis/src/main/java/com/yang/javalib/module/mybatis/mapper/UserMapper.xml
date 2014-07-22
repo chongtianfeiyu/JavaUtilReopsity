@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<!-- 为mapper指定匹配的接口 -->  
+<mapper namespace="com.yang.javalib.module.mybatis.mapper.UserMapper">  
+    <!-- 取得所有用户  id为对应接口的方法名， resultType为返回的数据类型 ,  
+    这里返回的是list类型，但是mybatis可以为我们自动将com.ml.entity.User放到一个list中-->  
+    <select id="getAll" resultType="User">  
+        SELECT * FROM User  
+    </select>  
+    <!-- id和resultType同上，parameterType指的是传入的参数类型 #{id}中的id与接口方法中的参数同名，否则取不到 -->  
+    <select id="get" parameterType="int" resultType="User">  
+        SELECT * FROM User where id=#{id}  
+    </select>  
+    <!--  这里定义的删除是没有返回值的-->  
+    <delete id="deleteUser" parameterType="int" >  
+        DELETE FROM User where id=#{id}  
+    </delete>  
+    <!-- 这里的参数类型是 com.ml.entity.User-->  
+    <update id="modifyUser" parameterType="User">  
+        UPDATE User SET username=#{username},password=#{password} WHERE id=#{id}  
+    </update>  
+    <!-- 因为数据库设计的id是自增的，所以这里无需管id -->  
+    <insert id="addUser" parameterType="User">  
+        INSERT INTO User (username,password) VALUES (#{username},#{password})  
+    </insert>  
+</mapper>  

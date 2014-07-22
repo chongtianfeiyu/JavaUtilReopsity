@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teach1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="46aa9a1c-d052-42ba-8906-d55d47d64d21">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="435"/>
+	<subDataset name="New Dataset 1" uuid="cc4c7fe8-7e53-4bf7-82b9-7287d61fa365"/>
+	<subDataset name="subDataSet1" uuid="f08ae690-0ccd-43da-9151-2643411d0caa">
+		<parameter name="subParams1" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[50]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[select $P{subParams1} aa]]>
+		</queryString>
+		<field name="aa" class="java.lang.Double"/>
+	</subDataset>
+	<parameter name="num" class="java.lang.Integer" isForPrompting="false">
+		<defaultValueExpression><![CDATA[111111111]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select task.taskStyle as  no , task.taskStyle as name , task.id  as age
+from task task]]>
+	</queryString>
+	<field name="no" class="java.lang.String"/>
+	<field name="name" class="java.lang.String"/>
+	<field name="age" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="373" y="45" width="100" height="20" uuid="aa3e7435-c08f-4f2a-b07a-f480ce02330e"/>
+				<textFieldExpression><![CDATA[$P{num}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="33" y="0" width="100" height="20" uuid="91eabcfd-8d6e-46de-a543-e78809db0122"/>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="0" width="100" height="20" uuid="051b94fb-7170-4293-9f33-eb17359933e9"/>
+				<text><![CDATA[name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="414" y="0" width="100" height="20" uuid="fa8d00ca-3550-4175-b9d0-edbf68c93a60"/>
+				<text><![CDATA[age]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="33" y="0" width="100" height="20" uuid="f35126d9-617e-4946-8971-4a14ecf08534"/>
+				<textFieldExpression><![CDATA[$F{no}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="209" y="0" width="100" height="20" uuid="ae4f8303-9e3f-4277-95ad-9c39a589846a"/>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="0" width="100" height="20" uuid="e18e815d-93cb-4fbc-a3c2-fdb21a202205"/>
+				<textFieldExpression><![CDATA[$F{age}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="334" splitType="Stretch">
+			<thermometerChart>
+				<chart renderType="draw" theme="default">
+					<reportElement x="209" y="20" width="164" height="314" uuid="044814ea-30ab-4dd2-af13-0ace4ab44b79"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<valueDataset>
+					<valueExpression><![CDATA[new Integer(55)]]></valueExpression>
+				</valueDataset>
+				<thermometerPlot valueLocation="bulb" mercuryColor="#C0C0C0">
+					<plot>
+						<seriesColor seriesOrder="0" color="#3333FF"/>
+						<seriesColor seriesOrder="1" color="#5AF16A"/>
+						<seriesColor seriesOrder="2" color="#25C68E"/>
+						<seriesColor seriesOrder="3" color="#F20A20"/>
+					</plot>
+					<valueDisplay color="#3333FF" mask="ttt">
+						<font fontName="DejaVu Sans"/>
+					</valueDisplay>
+					<dataRange>
+						<lowExpression><![CDATA[0]]></lowExpression>
+						<highExpression><![CDATA[150]]></highExpression>
+					</dataRange>
+					<lowRange>
+						<dataRange>
+							<lowExpression><![CDATA[0]]></lowExpression>
+							<highExpression><![CDATA[50]]></highExpression>
+						</dataRange>
+					</lowRange>
+					<mediumRange>
+						<dataRange>
+							<lowExpression><![CDATA[50]]></lowExpression>
+							<highExpression><![CDATA[100]]></highExpression>
+						</dataRange>
+					</mediumRange>
+					<highRange>
+						<dataRange>
+							<lowExpression><![CDATA[100]]></lowExpression>
+							<highExpression><![CDATA[150]]></highExpression>
+						</dataRange>
+					</highRange>
+				</thermometerPlot>
+			</thermometerChart>
+		</band>
+	</summary>
+</jasperReport>

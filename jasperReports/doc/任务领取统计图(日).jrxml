@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="任务领取统计图(日)" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9b0fa9e5-c2d4-4117-ae5a-36e15ae9968b">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select   task.id,task.taskName  , task.rate ,task.rate*10000/100/365 , task.days ,task.showTime ,task.margins ,sum(apply.totalApplyNum)  ,sum(apply.totalapplymoney/100)
+from task task ,taskApply apply
+where task.id =apply.taskID
+ and  TO_DAYS(apply.beg_time_Bucket) >= TO_DAYS(now())
+and apply.state = 1
+group by task.id ,task.taskName ,task.rate,task.days,task.margins,task.showTime
+order by  sum(apply.totalapplymoney/100) desc
+limit 20]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="taskName" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rate" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="task.rate*10000/100/365" class="java.lang.Double"/>
+	<field name="days" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="showTime" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="margins" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sum(apply.totalApplyNum)" class="java.math.BigDecimal"/>
+	<field name="sum(apply.totalapplymoney/100)" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="270" y="0" width="211" height="39" uuid="7595b655-b24d-4f83-8c1f-cf8267c44e53"/>
+				<textElement>
+					<font fontName="仿宋" size="24"/>
+				</textElement>
+				<text><![CDATA[任务领取统计图(日)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement x="0" y="0" width="44" height="20" uuid="495536e1-b439-4416-a512-ca0518ebb6d3"/>
+				<text><![CDATA[任务ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="0" width="162" height="20" uuid="256deaa8-2197-4c3a-be72-575a8cf8295d"/>
+				<text><![CDATA[任务名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="0" width="64" height="20" uuid="c2426f8b-df1f-4371-bb9c-ea30caa31896"/>
+				<text><![CDATA[年化利率]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="0" width="62" height="20" uuid="49aea58c-b752-4678-8076-3e8e2fdd3ff3"/>
+				<text><![CDATA[万元日收益]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="332" y="0" width="83" height="20" uuid="bb954726-049b-4502-b88a-428af0c9fcdc"/>
+				<text><![CDATA[任务天数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="0" width="83" height="20" uuid="950f8d56-e2dd-4c0a-8131-90473a1919e2"/>
+				<text><![CDATA[展示时间]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="498" y="0" width="83" height="20" uuid="46f24a09-8ab6-4cb1-b7ef-5fc3cd5909af"/>
+				<text><![CDATA[押金]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="581" y="0" width="83" height="20" uuid="edbd9a07-4ec4-42d2-a43d-4b791052d5d5"/>
+				<text><![CDATA[任务申请数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="664" y="0" width="83" height="20" uuid="0e49c64b-ffac-42b8-b404-bff4cba0f2f1"/>
+				<text><![CDATA[申请总金额]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="44" height="20" uuid="42b66709-0f9b-4b0e-b43d-a1cfccc11a4b"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="0" width="162" height="20" uuid="7024daa8-4c79-43f3-840e-046ba31f8339"/>
+				<textFieldExpression><![CDATA[$F{taskName}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="206" y="0" width="64" height="20" uuid="5fdd992b-996c-456e-a048-27609c83c638"/>
+				<textFieldExpression><![CDATA[$F{rate}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="270" y="0" width="62" height="20" uuid="1749be73-bc87-4937-998d-4bc7d31cd99a"/>
+				<textFieldExpression><![CDATA[$F{task.rate*10000/100/365}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="0" width="83" height="20" uuid="c86b873e-2054-4554-8018-5bf28814062e"/>
+				<textFieldExpression><![CDATA[$F{days}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="0" width="83" height="20" uuid="077ee501-c54f-4637-9c16-51ef3c59acc9"/>
+				<textFieldExpression><![CDATA[$F{showTime}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="498" y="0" width="83" height="20" uuid="8c35d747-cc3c-4d21-a87d-6589d41361c6"/>
+				<textFieldExpression><![CDATA[$F{margins}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="581" y="0" width="83" height="20" uuid="5669e9be-2862-42cd-b7f1-88ebed84ddc2"/>
+				<textFieldExpression><![CDATA[$F{sum(apply.totalApplyNum)}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00;-###0.00">
+				<reportElement x="664" y="0" width="83" height="20" uuid="766ab157-46ce-4d51-aee8-34aad8f2d9b8"/>
+				<textFieldExpression><![CDATA[$F{sum(apply.totalapplymoney/100)}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="345">
+			<barChart>
+				<chart>
+					<reportElement stretchType="RelativeToTallestObject" x="15" y="10" width="752" height="335" uuid="406d046e-4e52-4c1a-a267-95df6f63b9dd"/>
+					<chartTitle/>
+					<chartSubtitle>
+						<subtitleExpression><![CDATA[$F{taskName}]]></subtitleExpression>
+					</chartSubtitle>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["日任务申请金额排行统计"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{taskName}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{sum(apply.totalapplymoney/100)}]]></valueExpression>
+						<labelExpression><![CDATA[$F{taskName} + $F{id}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot labelRotation="90.0"/>
+					<itemLabel/>
+					<categoryAxisLabelExpression><![CDATA["任务名"]]></categoryAxisLabelExpression>
+					<categoryAxisFormat labelRotation="90.0">
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisLabelExpression><![CDATA["投资金额/元"]]></valueAxisLabelExpression>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+		</band>
+	</summary>
+</jasperReport>

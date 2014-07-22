@@ -6,6 +6,27 @@
     <version>0.1</version>
     <modules>
         <module>baseUtil</module>
+        <module>classUtil</module>
+        <module>dbUtil</module>
+        <module>ioUtil</module>
+        <module>secutiryUtil</module>
+        <module>swtUtil</module>
+        <module>threadUtil</module>
+        <module>webUtil</module>
+        <module>xmlUtil</module>
+        <module>jquarzUtil</module>
+        <module>modultWS-CxfUtil</module>
+        <module>module-mybatis</module>
+        <module>collectionUtil</module>
+        <module>ehcacheUtil</module>
+        <module>HttpClient4Util</module>
+        <module>jasperReports</module>
+        <module>JsonUtil</module>
+        <module>mavenUtil</module>
+        <module>module-hibernate</module>
+        <module>module-jedis</module>
+        <module>module-springmvc</module>
+        <module>poitUil</module>
     </modules>
     <packaging>pom</packaging>
     <name>parent</name>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"  
+"http://mybatis.org/dtd/mybatis-3-config.dtd">  
+<configuration>  
+    <typeAliases>  
+        <typeAlias alias="User" type="com.yang.javalib.module.mybatis.pojo.User" />  <!--配置别名，是在Mapper中使用别名-->  
+    </typeAliases>  
+    <mappers>  
+        <mapper resource="ibatis/UserMapper.xml"/>
+    </mappers>  
+</configuration>  

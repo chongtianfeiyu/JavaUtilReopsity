@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+  <config id="SystemConfig">
+  	<item id="SysCode">MONITOR</item><!-- 可选值:ALL|MONI|AUTO|ITSM -->    
+    <item id="CollTime">20</item>
+    <item id="LogSaveType">1</item>
+    <item id="Type">web</item>
+    <!-- 登录类型，1：本地数据库登录；2:SSO登录；3：UAAP登录 -->
+    <item id="LoginType">1</item>
+    <item id="JobLoad">true</item>
+    <!--任务类型：1:从数据库读取，2：从配置文件读取；3：两者都有-->
+    <item id="JobType">3</item>
+    <!-- license配置:1表示禁用,不配表示启用 -->
+    <item id="license"></item>
+    <!-- 上传文件保存路径 (路径必须以"/" 结尾)-->
+    <item id="SystemFilePath">C:/SopResources/</item>
+    
+  </config>
+  <!--数据库调试-->
+  <config id="SQLDebug">
+    <item id="SlowSQLTime">5</item>
+  </config>
+  <!--数据采集线程池-->
+  <config id="CollThreadPool">
+    <item id="corePoolSize">50</item>
+    <item id="maximumPoolSize">400</item>
+    <item id="threadQueueSize">50000</item>
+    <item id="keepAliveTime">2</item>
+  </config>
+
+  <!--定时任务-->
+  <config id="Job">
+    <item id="com.dc.bd.sop.monitor.util.MoniKpiThread">0 0/30 * * * ?||0</item>   
+  </config>  
+  <config id="exchange">
+  	<item id="fileName">trade.txt</item>
+  	<item id="isLimit">1</item>
+  	<item id="pattern">yyyyMMdd</item>
+  </config>
+
+</configs>

@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>com.yang.java.lib.util</groupId>
+        <version>0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>module-hibernate</artifactId>
+    <packaging>jar</packaging>
+
+    <name>module-hibernate</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-annotations</artifactId>
+            <version>3.4.0.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>3.1.0.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>3.4.0.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>3.1.0.GA</version>
+        </dependency>
+
+        <!--  -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.24</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins><!-- maven 由数据库生成hibernate相应文件 -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.0.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>UTF-8</encoding>
+                    <optimise>true</optimise>
+                    <compilerArgument>-nowarn</compilerArgument>
+                </configuration>
+            </plugin>
+            <plugin> <!-- hibernate3:hbm2java   hibernate3:hbm2hbmxml -->
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>hibernate3-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <components>
+                        <component>
+                            <name>hbm2hbmxml</name><!-- xml文件生成后存储路径 -->
+                            <implementation>jdbcconfiguration</implementation>
+                            <outputDirectory>target/generated-resources/hibernate3</outputDirectory>
+                        </component>
+                        <component>
+                            <name>hbm2java</name><!-- pojojava 文件生成后存储路径 -->
+                            <implementation>jdbcconfiguration</implementation>
+                            <outputDirectory>target/generated-sources/hibernate3</outputDirectory>
+                        </component>
+                    </components>
+                    <componentProperties>
+                        <revengfile>src/main/resources/reveng.xml</revengfile>
+                        <propertyfile>src/main/resources/hibernate.properties</propertyfile>
+                        <packagename>com.yang.javalib.module.hibernate.pojo</packagename><!-- 生成 文件 -->
+                        <jdk5>true</jdk5>
+                        <ejb3>false</ejb3>
+                    </componentProperties>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>cglib</groupId>
+                        <artifactId>cglib-nodep</artifactId>
+                        <version>2.2.2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.25</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <i k="tempItem1" t="p">
+    <i k="aa" t="s">11</i>
+    <i k="bb" t="s">22</i>
+    <i k="cc" t="s">33</i>
+  </i>
+</config>
+

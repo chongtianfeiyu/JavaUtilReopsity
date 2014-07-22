@@ -1,0 +1,72 @@
+package com.yang.javalib.xmlUtil.config;
+
+import java.util.HashMap;
+
+public class Parameters {
+
+/*    */   public static final String CACHE_SERVICE = "cacheService";
+/*    */   public static final String TOPO_NODE_SERVICE = "topoNodeService";
+/*    */   public static final String EVENT_SERVICE = "alarmEvenService";
+/*    */   public static final String ACTION_DEAL_SERVICE = "actionDealHisService";
+/*    */   public static final String KPI_DEFINE_SERVICE = "kpiDefineService";
+/*    */   public static final String EVENTRULE_SERVICE = "eventRuleService";
+/*    */   public static final String KPIINFO_SERVICE = "kpiInfoService";
+/*    */   public static final String ALARM_LEVEL_SERVICE = "monAlarmLevelService";
+/*    */   public static final String FILE_INFO_SERVICE = "fileInfoService";
+/*    */   public static final String FILTER_ACTION_SERVICE = "filterActionService";
+/*    */   public static final String SERVICE_THRESHOLD = "monThresholdService";
+/*    */   public static final String DAO_THRESHOLD = "monThresholdDao";
+/*    */   public static final String DAO_INTEGRATION = "integrationDao";
+/*    */   public static final String CACHE_SYNC_RESOURCE = "resource";
+/*    */   public static final String CACHE_SYNC_KPIINFO = "kpiinfo";
+/*    */   public static final String CACHE_SYNC_WORKCAL = "workcal";
+/*    */   public static final String CACHE_SYNC_AUTOSENDITSM = "autosenditsm";
+/*    */   public static final String CACHE_SYNC_AUTOUPGRADE = "autoupgrade";
+/*    */   public static final String CACHE_SYNC_DELAYCLOSE = "delayclose";
+/*    */   public static final String CACHE_SYNC_FILTER = "filter";
+/*    */   public static final String CACHE_SYNC_MAILNOTE = "mailnote";
+/*    */   public static final String CACHE_SYNC_SOUND = "sound";
+/*    */   public static final String CACHE_SYNC_TOPONODE = "toponode";
+/*    */   public static final String CACHE_SYNC_RULE = "rule";
+/*    */   public static final String CACHE_SYNC_BUSINESSSYSTEM = "businesssystem";
+/*    */   public static final String CACHE_SYNC_PRESENTEVENT = "presentevent";
+/* 35 */   public static final String[] ALARM_LEVELS = { "提示", "警告", "次要", "重要", "紧急" };
+/*    */   public static final String CONFIG_XML_ID = "id";
+/*    */   public static final String CONFIG_BASE_PATH = "conf/base.xml";
+/*    */   public static final String CONFIG_HAZELCAST_PATH = "conf/hazelcast.xml";
+/*    */   public static final String LOG4J_CONFI_FILE_PATH = "conf/log4j.properties";
+/*    */   public static final String ICE_CONFIG_FILE_PATH = "conf/ice.conf";
+/*    */   public static final String ICE_SERVER_NAME = "sopcollector2";
+/*    */   public static final String ICE_SERVER_NAME1 = "sopcollector";
+/*    */   public static final String ICE_SERVER_NOTIFY = "moni2";
+/*    */   public static final String PUSH_EVENT = "pushevent";
+/*    */   public static final String UPDATE_NODE_STATUS = "updatenodestatus";
+/*    */   public static final String NODE_TREE_CACHE = "nodemapcache";
+/*    */   public static final String CONFIG_CACHE_NAME = "config";
+/*    */   public static final String RESOURCE_NAME_MAP_CACHE_NAME = "resourcenamemap";
+/*    */   public static final String DATA_CACHE_REFRESH_CACHE_NAME = "datacacherefresh";
+/*    */   public static final String ACTIVE_KPIINFO_CACHE_NAME = "activekpiinfo";
+/*    */   public static final String DATA_CACHE_INVALID_ALARM_LEVEL_NAME = "invalidalarmlevel";
+/* 56 */   public static final HashMap<String, Long> levelMappingMap = new HashMap();
+/*    */   public static final String EVENT_BALANCE_MARK = "event_balance";
+/*    */   public static final String PERFDATA_BALANCE_MARK = "perfdata_balance";
+/*    */   public static String[] FILE_IN_PATH;
+/*    */   public static String FILE_TMP_PATH;
+/*    */   public static String FILE_ERR_PATH;
+/*    */   public static String FILE_BAK_PATH;
+/*    */   public static String RESOURCE_STATUS_KPI_CLASS_CODE;
+/*    */   public static String RESOURCE_STATUS_KPI_CODE;
+/*    */   public static String WARN_FILE_PATH;
+/*    */   public static String RESOURCE_STATUS_INVALID;
+/*    */   public static String RESOURCE_STATUS_VALID;
+/*    */   public static Integer SEND_EVENT_INTERVAL;
+/*    */   public static Integer EVENT_DEAL_BLOCK_SIZE;
+/*    */   public static Integer EVENT_DEAL_THRESHOLD;
+/*    */   public static Integer EVENT_SMALL_DATA_DEAL_INTERVAL;
+/*    */   public static Integer PERF_DATA_DEAL_BLOCK_SIZE;
+/*    */   public static Integer PERF_DATA_DEAL_THRESHOLD;
+/*    */   public static Integer PERFDATA_SMALL_DATA_DEAL_INTERVAL;
+/*    */   public static Integer BALANCE_STATUS;
+/*    */   public static Integer REFRESH_CACHE_WHEN_START;
+/*    */ 
+}

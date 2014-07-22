@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+  <generatorConfiguration>
+  <classPathEntry　location="D:\maven_resource_myeclipse\repository\mysql\mysql-connector-java\mysql-connector-java-5.1.27.jar"/>
+  <context id = "MySqlTables" targetRuntime="MyBatis3">
+  <!--关闭注解信息  -->
+  <commentGenerator>
+  <property name ="suppressAllComments" value="true" />
+  </commentGenerator>
+  <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.1.102:3308/test" userId="root"  password="123123">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name = "forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		    <!-- model的配置  -->
+		<javaModelGenerator targetPackage="com.yang.javalib.module.mybatis.pojo" targetProject=".\src\main\java">
+			<property name = "enableSubPackages" value="true" />
+			<property name = "trimStrings" value="true" />
+		</javaModelGenerator>
+		 
+		   <!--mybatis的xml的配置  -->
+		<sqlMapGenerator targetPackage="com.yang.javalib.module.mybatis.pojo" targetProject=".\src\main\resources">
+			<property name = "enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		 
+		  <!--mapper的配置  -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.yang.javalib.module.mybatis.pojo" targetProject=".\src\main\java">
+			<property name = "enableSubPackages" value="true" />
+		</javaClientGenerator>
+		 
+		<table tableName="user" domainObjectName="User">
+			<!--<generatedKey column="ID"　sqlStatement="select s_sequence.nextval from dual" type="pre" />　-->
+			</table>
+	</context>
+</generatorConfiguration>
+ 

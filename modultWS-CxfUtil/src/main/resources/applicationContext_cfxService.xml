@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://cxf.apache.org/jaxws
+    http://cxf.apache.org/schemas/jaxws.xsd
+    http://cxf.apache.org/jaxrs
+    http://cxf.apache.org/schemas/jaxrs.xsd">
+    
+	<!-- 测试服务类 -->
+	<bean id="userServiceBean" class="com.yang.javalib.module.ws.cxf3.serviceimpl.ComplexUserService"> 
+	</bean>
+	 
+	<bean id="inMessageInterceptor" class="org.apache.cxf.interceptor.LoggingInInterceptor">
+	    <constructor-arg  value="receive"/>
+	</bean>
+	
+ 
+	<bean id="outLoggingInterceptor" class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+	<!-- 注意下面的address，这里的address的名称就是访问的WebService的name -->
+	<jaxws:server id="userService" serviceClass="com.yang.javalib.module.ws.cxf3.servicei.IComplexUserService" address="/Users">
+	    <jaxws:serviceBean>
+	        <!-- 要暴露的 bean 的引用 -->
+	        <ref bean="userServiceBean"/>
+	    </jaxws:serviceBean>
+	   
+	    <jaxws:inInterceptors>
+	        <ref bean="inMessageInterceptor"/>
+	        <ref bean="wss4jIn"/>
+	    </jaxws:inInterceptors>
+	    <jaxws:outInterceptors>
+	        <ref bean="outLoggingInterceptor"/>
+	    </jaxws:outInterceptors>
+	</jaxws:server>
+	
+	
+	<bean id="greeterImpl" class="com.yang.javalib.module.ws.cxf3.serviceimpl.GreeterImpl"> 
+	</bean>
+	<!-- 注意下面的address，这里的address的名称就是访问的WebService的name -->
+	<jaxws:server id="GreeterAsync" serviceClass="com.yang.javalib.module.ws.cxf3.servicei.GreeterAsync" address="/GreeterAsync">
+	    <jaxws:serviceBean>
+	        <!-- 要暴露的 bean 的引用 -->
+	        <ref bean="greeterImpl"/>
+	    </jaxws:serviceBean> 
+	    <jaxws:inInterceptors>
+	        <ref bean="inMessageInterceptor"/>
+	        <ref bean="wss4jIn"/>
+	    </jaxws:inInterceptors>
+	    <jaxws:outInterceptors>
+	        <ref bean="outLoggingInterceptor"/>
+	    </jaxws:outInterceptors>
+	</jaxws:server>
+	 
+	<!-- 
+	<jaxws:bindings
+    wsdlLocation="http://192.168.1.102:8080/modultWS-CxfUtil/Users?wsdl"
+    jaxws:xmlns="http://servicei.cxf3.ws.module.javalib.yang.com/">
+ 
+	</jaxws:bindings> -->
+	
+	 <bean id="wss4jIn" class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+        <constructor-arg>
+            <map>
+                <entry key="action" value="UsernameToken" />
+                <entry key="passwordType" value="PasswordText" />
+                <entry key="passwordCallbackClass" value="com.yang.javalib.module.ws.cxf3.secutiry.ServerPasswordCallback" />
+            </map>
+        </constructor-arg>
+    </bean>
+	
+	<!--   上面是OK 的.  下面是在测试的.  -->
+    
+    
+    
+		 <!-- 	 -->
+		<bean id="httpclientService" class="com.yang.javalib.module.ws.cxf3.serviceimpl.UserServiceRS">
+    	</bean>
+		<jaxrs:server id="restServiceContainer" address="/httpClientUsers">
+		    <jaxrs:serviceBeans>
+		        <ref bean="httpclientService" />
+		    </jaxrs:serviceBeans>
+		    <jaxrs:extensionMappings>
+		        <entry key="json" value="application/json" />
+		        <entry key="xml" value="application/xml" />
+		    </jaxrs:extensionMappings>
+		    <jaxrs:languageMappings>
+		           <entry key="en" value="en-gb"/>  
+		    </jaxrs:languageMappings>
+		</jaxrs:server>
+	
+	<!-- aegis 方式试验 未用,   -->  
+	
+	<bean id="helloWorldImpl" class="com.yang.javalib.module.ws.cxf3.serviceimpl.HelloWorldImpl"> 
+	</bean>
+		<bean id="aegisBean" class="org.apache.cxf.aegis.databinding.AegisDatabinding" scope="prototype"/> 
+		<bean id="jaxws-and-aegis-service-factory"
+		  class="org.apache.cxf.jaxws.support.JaxWsServiceFactoryBean" scope="prototype"> 
+		  <property name="dataBinding" ref="aegisBean"/>
+		  <!-- Use this property only for XFire compatibility  this version for 2.0.x 
+		  <property name="serviceConfigurations">
+		    <list>
+		      <bean class="org.apache.cxf.jaxws.support.JaxWsServiceConfiguration"/>
+		      <bean class="org.apache.cxf.aegis.databinding.AegisServiceConfiguration"/>
+		      <bean class="org.apache.cxf.service.factory.DefaultServiceConfiguration"/> 
+		    </list>
+		  </property>
+		  -->
+		  <!-- Use this property only for XFire compatibility    this version for 2.1
+		  <property name="serviceConfigurations">
+		    <list>
+		      <bean class="org.apache.cxf.jaxws.support.JaxWsServiceConfiguration"/>
+		      <bean class="org.apache.cxf.aegis.databinding.XFireCompatibilityServiceConfiguration"/>
+		      <bean class="org.apache.cxf.service.factory.DefaultServiceConfiguration"/> 
+		    </list>
+		  </property>
+		  -->
+		</bean>
+		 
+		<jaxws:endpoint id="aegis_service_endpoint" implementor="#helloWorldImpl" address="/aegisUsers">
+		  <jaxws:serviceFactory>
+		    <ref bean='jaxws-and-aegis-service-factory' />
+		  </jaxws:serviceFactory>
+		</jaxws:endpoint>
+	<!-- 
+    <jaxws:endpoint id="LabsQuerying" implementor="com.hoo.service.ComplexUserService"  address="/aegis">  
+        <jaxws:dataBinding>  
+            <bean class="org.apache.cxf.aegis.databinding.AegisDatabinding" />  
+        </jaxws:dataBinding>  
+    </jaxws:endpoint> -->
+    
+		<!-- asyn 测试 -->
+	<bean id="ggreeterImplBean" class="com.yang.javalib.module.ws.cxf3.serviceimpl.GreeterImpl">
+	</bean>
+	<!-- 
+	<jaxws:server id="asynService" serviceClass="com.yang.javalib.module.ws.cxf3.servicei.GreeterAsync" address="/Asyn">
+	    <jaxws:serviceBean>
+	        要暴露的 bean 的引用
+	        <ref bean="ggreeterImplBean"/>
+	    </jaxws:serviceBean>
+	    
+	    <jaxws:inInterceptors>
+	        <ref bean="inMessageInterceptor"/>
+	    </jaxws:inInterceptors>
+	    
+	    <jaxws:outInterceptors>
+	        <ref bean="outLoggingInterceptor"/>
+	    </jaxws:outInterceptors>
+	</jaxws:server>
+	 -->
+	
+</beans>
