@@ -27,6 +27,7 @@
         <module>module-jedis</module>
         <module>module-springmvc</module>
         <module>poitUil</module>
+        <module>astUtil</module>
     </modules>
     <packaging>pom</packaging>
     <name>parent</name>

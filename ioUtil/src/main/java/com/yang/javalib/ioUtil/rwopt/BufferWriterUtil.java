@@ -47,7 +47,6 @@ public class BufferWriterUtil {
 	
 	public void flush() throws IOException{
 		bWriter.flush();
-		
 	}
 	
 	public void close() throws IOException{

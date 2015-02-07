@@ -394,9 +394,8 @@ public abstract class MediaUtil {
 	 
 	public static void playOneSound(String filePath) throws NoPlayerException, IOException{
 		 File fi =new File(filePath);
-		  //fi.toURL()
-		 if(fi.exists()){
-				 
+        System.out.println(fi.getAbsolutePath());
+        if(fi.exists()){
 				AudioClip plaer =  Applet.newAudioClip( fi.toURL()); 
 				plaer.play(); 
 		 }

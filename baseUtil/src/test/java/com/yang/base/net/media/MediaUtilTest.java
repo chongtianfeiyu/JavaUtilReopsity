@@ -30,9 +30,9 @@ public class MediaUtilTest {
 	 */
 	@Test
 	public void testPlayOneSound() throws InterruptedException, NoPlayerException, IOException { 
-		MediaUtil.playOneSound("sounds/warn.wav");  
-	}
-	
+		MediaUtil.playOneSound("baseUtil/sounds/warn.wav");//本地运行，所以相当于是又进了一层目录
+        //F:\javaProjects\JavaUtilReopsity\sounds\warn.wav
+    }
 
 	@Test
 	public void testPlayOneSoundUseCase1() throws InterruptedException, NoPlayerException, IOException { 

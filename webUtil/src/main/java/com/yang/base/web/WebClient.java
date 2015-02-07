@@ -765,7 +765,15 @@ public class WebClient {
 
 	private static final void proxyTest() throws HttpException, IOException,
 			InterruptedException {
-		@SuppressWarnings("unchecked")
+       String targetUrl="http://m.nanhunnvjia.com/m/minfo/7.html";
+
+        HttpClient client = new HttpClient();
+
+
+
+
+
+        @SuppressWarnings("unchecked")
 		List<String> pros = FileUtils.readLines(new File("conf/prox.txt"));
 
 		for (String item : pros) {

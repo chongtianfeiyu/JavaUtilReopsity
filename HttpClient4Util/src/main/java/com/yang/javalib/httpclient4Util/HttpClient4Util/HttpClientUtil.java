@@ -10,17 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.http.Header;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.NameValuePair;
-import org.apache.http.ParseException;
+import org.apache.http.*;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.conn.params.ConnRoutePNames;
 import org.apache.http.entity.ContentType;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
@@ -103,6 +99,15 @@ public class HttpClientUtil {
 		return exctueRequest(postMethod); // 执行请求，获取HttpResponse对象  
 	}
 
+	public HttpResponseVO doPost(String uri, HttpEntity entity,String ip,Integer port) throws ParseException, IOException {// post方法提交
+		HttpPost postMethod = null;
+
+		postMethod = new HttpPost(uri);
+        HttpHost httpHost =new HttpHost(ip,port) ;
+		postMethod.setEntity(entity);//设置请求实体，例如表单数据
+		return exctueRequest(postMethod,httpHost); // 执行请求，获取HttpResponse对象
+	}
+
 	/**
 	 * @throws IOException 
 	 * @throws ParseException 
@@ -113,6 +118,10 @@ public class HttpClientUtil {
 	 * @throws
 	 */
 	private HttpResponseVO exctueRequest(HttpRequestBase request) throws ParseException, IOException {
+            return exctueRequest(request,null);
+    }
+
+	private HttpResponseVO exctueRequest(HttpRequestBase request,HttpHost proxy) throws ParseException, IOException {
 		HttpResponse response = null;
 		long time = System.currentTimeMillis(); 
 		String responseBody = "";
@@ -121,7 +130,17 @@ public class HttpClientUtil {
 			logger.debug("excute request:" + request.getURI());//获取请求uri  
 			logger.debug("-----------------------------------");
 
-			response = this.getClient().execute(request);//执行请求，获取HttpResponse对象 
+            HttpClient client = this.getClient();
+            if(proxy!=null){
+                client.getParams().setParameter(ConnRoutePNames.DEFAULT_PROXY,proxy);
+/*
+                client.getHostConfiguration()
+                        .setProxy(proxy);
+*/
+                client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,  5000);//连接时间20s
+                client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,  6000);//数据传输时间60s
+            }
+			response = client.execute(request);//执行请求，获取HttpResponse对象
 			time = System.currentTimeMillis() - time;
 			//showResponse(response);//打印Response信息  
 			 statuscode = response.getStatusLine().getStatusCode();//根据相应码处理URI重定向  

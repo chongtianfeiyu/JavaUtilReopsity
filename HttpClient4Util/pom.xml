@@ -40,6 +40,22 @@
             <artifactId>spring-web</artifactId>
             <version>3.2.2.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.yang.javalib</groupId>
+            <artifactId>xmlUtil</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yang.java.lib.util</groupId>
+            <artifactId>threadUtil</artifactId>
+            <version>0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.yang.java.lib.util</groupId>
+            <artifactId>ioUtil</artifactId>
+            <version>0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
